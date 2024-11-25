@@ -22,14 +22,14 @@ def get_betfair_data():
 
     events = trading.betting.list_events(tennis_filter)
     for e in events:
-        # print(e.event.name, e.event.open_date.date(), e.event.id)
+        #print(e.event.name, e.event.open_date.date(), e.event.id)
         # Create a market filter for match odds market
         market_filter = filters.market_filter(event_ids=[e.event.id], market_type_codes=['MATCH_ODDS'])
 
         # List market catalogues
         market_catalogues = trading.betting.list_market_catalogue(
             filter=market_filter,
-            max_results='100',  # Limit to 1 result for simplicity
+            max_results='1',  # Limit to 1 result for simplicity
             market_projection=['RUNNER_METADATA']
         )
 
@@ -42,8 +42,10 @@ def get_betfair_data():
             #print(e.event.name, e.event.open_date)
             #print(market.market_name, market.runners[0].runner_name)
             for market_book in market_books:
-               # print(market_book.runners[0].ex.available_to_lay[0].price)
-                if market_book.runners[0].ex.available_to_lay[0].price < 1.23 and market_book.inplay == False:
+                print(e.event.name)
+                #print(market.runners[0].runner_name)
+                #print(market_book.runners[0].ex.available_to_lay[0].price)
+                if len(market_book.runners[0].ex.available_to_lay) > 0 and market_book.runners[0].ex.available_to_lay[0].price < 1.23:
                     print(f"""{e.event.name}  {market.runners[0].runner_name} {market_book.runners[0].ex.available_to_lay[0].price}
                     {market.total_matched} {e.event.open_date} {market_book.inplay} """ )
 
