@@ -1,7 +1,10 @@
 import betfairlightweight
 import json
+import functions
 
 from betfairlightweight import filters
+
+from functions import minutes_until
 
 with open('credentials.json') as config_file:
     config = json.load(config_file)
@@ -13,6 +16,7 @@ cert = config['cert_path']
 
 
 def get_betfair_data():
+    viableBets =[]
     # Create a trading instance
     trading = betfairlightweight.APIClient(un, pw, key, certs=cert, locale='en_GB')
     tennis_filter = betfairlightweight.filters.market_filter(event_type_ids=['2'])
@@ -42,12 +46,12 @@ def get_betfair_data():
             #print(e.event.name, e.event.open_date)
             #print(market.market_name, market.runners[0].runner_name)
             for market_book in market_books:
-                print(e.event.name)
+                #print(e.event.name)
                 #print(market.runners[0].runner_name)
                 #print(market_book.runners[0].ex.available_to_lay[0].price)
-                if len(market_book.runners[0].ex.available_to_lay) > 0 and market_book.runners[0].ex.available_to_lay[0].price < 1.23:
-                    print(f"""{e.event.name}  {market.runners[0].runner_name} {market_book.runners[0].ex.available_to_lay[0].price}
-                    {market.total_matched} {e.event.open_date} {market_book.inplay} """ )
+                if len(market_book.runners[0].ex.available_to_lay) > 0 and market_book.runners[0].ex.available_to_lay[0].price < 1.93 and minutes_until(e.event.open_date) < 300:
+                    print(f""" {market_book.market_id} {e.event.name}  {market.runners[0].runner_name} {market_book.runners[0].ex.available_to_lay[0].price}
+                    {market.total_matched} {e.event.open_date} {market_book.inplay} minutesuntil: {minutes_until(e.event.open_date)} """ )
 
 
 get_betfair_data()
