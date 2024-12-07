@@ -1,5 +1,5 @@
 import OddsLookup
-from OddsLookup import OddsHolder
+import Betfair
 
-my_odds_holder = OddsHolder(r"C:\Users\dafyd\PycharmProjects\TennisBetfinder\\", r"OddsLookup.csv")
-print(my_odds_holder.get_back_odds('1.17'))
+bet_list= Betfair.get_betfair_data()
+print(bet_list[1])
