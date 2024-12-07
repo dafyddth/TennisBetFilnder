@@ -16,7 +16,9 @@ cert = config['cert_path']
 
 
 def get_betfair_data():
-    viableBets =[]
+    viableBets =[
+        ['Market_ID','Event','OpenDate','PlayerName','LayOdds']
+    ]
     # Create a trading instance
     trading = betfairlightweight.APIClient(un, pw, key, certs=cert, locale='en_GB')
     tennis_filter = betfairlightweight.filters.market_filter(event_type_ids=['2'])
@@ -49,9 +51,13 @@ def get_betfair_data():
                 #print(e.event.name)
                 #print(market.runners[0].runner_name)
                 #print(market_book.runners[0].ex.available_to_lay[0].price)
-                if len(market_book.runners[0].ex.available_to_lay) > 0 and market_book.runners[0].ex.available_to_lay[0].price < 1.93 and minutes_until(e.event.open_date) < 300:
+                if len(market_book.runners[0].ex.available_to_lay) > 0 and market_book.runners[0].ex.available_to_lay[0].price < 1.93 and minutes_until(e.event.open_date) < 800:
                     print(f""" {market_book.market_id} {e.event.name}  {market.runners[0].runner_name} {market_book.runners[0].ex.available_to_lay[0].price}
                     {market.total_matched} {e.event.open_date} {market_book.inplay} minutesuntil: {minutes_until(e.event.open_date)} """ )
+                    current_market_book = [market_book.market_id,e.event.name,e.event.open_date,market.runners[0].runner_name,market_book.runners[0].ex.available_to_lay[0].price]
+                    viableBets.append(current_market_book)
+    for i in range(0,len(viableBets)):
 
+        print(viableBets[i])
 
 get_betfair_data()
