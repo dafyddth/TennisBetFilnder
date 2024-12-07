@@ -6,7 +6,7 @@ from betfairlightweight import filters
 
 from functions import minutes_until
 
-with open('credentials.json') as config_file:
+with open('NewCredentials.json') as config_file:
     config = json.load(config_file)
 
 un = config['username']
