@@ -60,7 +60,7 @@ def get_betfair_data():
     return viableBets
 def check_and_append_bet(event, market, market_book, viableBets):
     for runner_index in range(len(market_book.runners)):
-        if len(market_book.runners[runner_index].ex.available_to_lay) > 0 and market_book.runners[runner_index].ex.available_to_lay[0].price < 1.5 and minutes_until(event.event.open_date) < 1800:
+        if len(market_book.runners[runner_index].ex.available_to_lay) > 0 and market_book.runners[runner_index].ex.available_to_lay[0].price < 1.23 and minutes_until(event.event.open_date) < 10:
             logging.info(f""" {market_book.market_id} {event.event.name}  {market.runners[runner_index].runner_name} {market_book.runners[runner_index].ex.available_to_lay[0].price}
             {market.total_matched} {event.event.open_date} {market_book.inplay} minutesuntil: {minutes_until(event.event.open_date)} """)
             #print(f""" {market_book.market_id} {event.event.name}  {market.runners[runner_index].runner_name} {market_book.runners[runner_index].ex.available_to_lay[0].price}

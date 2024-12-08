@@ -1,8 +1,6 @@
 import csv
 
 
-
-
 class OddsHolder:
 
     def __init__(self,filepath,filename):
