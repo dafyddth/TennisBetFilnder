@@ -69,3 +69,6 @@ def send_bet_notification(my_message):
 
     telegram = get_notifier('telegram')
     telegram.notify(token=t_token, chat_id=t_chat_id, message=my_message)
+
+def ideal_back_stake(lay_odds, back_odds, lay_stake):
+    return lay_stake * lay_odds / back_odds
