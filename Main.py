@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from OddsLookup import OddsHolder
 import Betfair
 import functions
@@ -15,7 +17,7 @@ while iterations < max_iterations:
 
     # Iterate through each bet in the list
     for bet in bet_list:
-        print(bet[0])
+        #print(bet[0])
         market_id = bet[0]
 
         # Check if the bet is new
@@ -41,9 +43,10 @@ while iterations < max_iterations:
             functions.record_bet(bet[0])
 
         else:
-            print(f"Don't send Notification {bet[0]}")
+            x=1+1
+             #print(f"Don't send Notification {bet[0]}")
     time.sleep(300)
     iterations +=1
-    print(iterations)
+    print(iterations, "  ", datetime.now())
 # Print the second bet in the list
 
