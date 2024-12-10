@@ -7,7 +7,7 @@ import time
 
 from functions import ideal_back_stake
 
-my_odds_holder = OddsHolder(r"C:\Users\dafyd\PycharmProjects\TennisBetfinder\\", r"OddsLookup.csv")
+my_odds_holder = OddsHolder(r"C:\Users\dafyd\PycharmProjects\TennisBetfinder\\", r"OddsLookupTrends.csv")
 max_iterations = 144
 iterations = 0
 lay_stake = 5
@@ -34,7 +34,7 @@ while iterations < max_iterations:
                             f"Start time: {match_start_time}\n"
                             f"Player: {player.upper()}\n"
                             f"Lay odds: {lay_odds}\n"
-                            f"Back odds: {back_odds}"
+                            f"Back odds: {back_odds}\n"
                             f"Back stake: {back_stake}")
 
             #print(text_message)

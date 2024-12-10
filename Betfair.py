@@ -6,6 +6,9 @@ from functions import minutes_until
 from datetime import datetime
 import logging
 
+max_lay_odds = 1.23
+mins_till_start = 10
+
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -60,11 +63,11 @@ def get_betfair_data():
     return viableBets
 def check_and_append_bet(event, market, market_book, viableBets):
     for runner_index in range(len(market_book.runners)):
-        if len(market_book.runners[runner_index].ex.available_to_lay) > 0 and market_book.runners[runner_index].ex.available_to_lay[0].price < 1.23 and minutes_until(event.event.open_date) < 10:
+        if len(market_book.runners[runner_index].ex.available_to_lay) > 0 and market_book.runners[runner_index].ex.available_to_lay[0].price < max_lay_odds and mins_till_start > minutes_until(
+                event.event.open_date) > 0:
             logging.info(f""" {market_book.market_id} {event.event.name}  {market.runners[runner_index].runner_name} {market_book.runners[runner_index].ex.available_to_lay[0].price}
             {market.total_matched} {event.event.open_date} {market_book.inplay} minutesuntil: {minutes_until(event.event.open_date)} """)
-            #print(f""" {market_book.market_id} {event.event.name}  {market.runners[runner_index].runner_name} {market_book.runners[runner_index].ex.available_to_lay[0].price}
-            #{market.total_matched} {event.event.open_date} {market_book.inplay} minutesuntil: {minutes_until(event.event.open_date)} """)
+
             current_market_book = [
                 market_book.market_id,
                 event.event.name,
