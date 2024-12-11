@@ -20,7 +20,7 @@ while iterations < max_iterations:
         #print(bet[0])
         market_id = bet[0]
 
-        # Check if the bet is new
+        # Check if the bet is new, returns TRUE if it is
         if functions.check_if_new_bet(market_id):
             print(f"Send Notification {market_id}")
             event_name = bet[1]
@@ -28,7 +28,7 @@ while iterations < max_iterations:
             player = bet[3]
             lay_odds = bet[4]
             back_odds = my_odds_holder.get_back_odds(str(bet[4]))
-            back_stake = ideal_back_stake(lay_odds, back_odds, lay_stake)
+            back_stake = round(ideal_back_stake(lay_odds, back_odds, lay_stake),2)
             text_message = (f"Tennis Bet: \n"
                             f"Match: {event_name}\n"
                             f"Start time: {match_start_time}\n"
