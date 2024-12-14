@@ -7,6 +7,7 @@
     <list default="true" id="e8a00b0b-9ab5-44dc-b190-39b7534ef909" name="Changes" comment="Remove extra prints">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OddsLookupTrends.csv" beforeDir="false" afterPath="$PROJECT_DIR$/OddsLookupTrends.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TennisMarkets.db" beforeDir="false" afterPath="$PROJECT_DIR$/TennisMarkets.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -198,7 +199,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733822431748</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Remove extra prints">
+      <option name="closed" value="true" />
+      <created>1733920481161</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1733920481161</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
