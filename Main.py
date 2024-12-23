@@ -3,7 +3,8 @@ from OddsLookup import OddsHolder
 import Betfair
 import functions
 import time
-from functions import ideal_back_stake
+
+
 
 
 my_odds_holder = OddsHolder(r"C:\Users\dafyd\PycharmProjects\TennisBetfinder\\", r"OddsLookupTrends.csv")
@@ -30,7 +31,7 @@ while iterations < max_iterations:
             lay_odds = bet[4]
             lay_stake = round(required_liability / (lay_odds - 1), 2)
             back_odds = my_odds_holder.get_back_odds(str(bet[4]))
-            back_stake = round(ideal_back_stake(lay_odds, back_odds, lay_stake), 2)
+            back_stake = round(functions.ideal_back_stake(lay_odds, back_odds, lay_stake), 2)
 
             # Format the values as currency
             formatted_lay_stake = f"£{lay_stake:.2f}"

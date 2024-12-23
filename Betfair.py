@@ -6,7 +6,7 @@ from functions import minutes_until
 from datetime import datetime
 import logging
 
-max_lay_odds = 1.23
+max_lay_odds = 1.21
 mins_till_start = 10
 
 # Configure logging
