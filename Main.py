@@ -4,7 +4,8 @@ import Betfair
 import functions
 import time
 
-
+#TO_DO: Record prices and other details in DB
+#TO_DO: Check prices for in_play matches for identified bets
 
 
 my_odds_holder = OddsHolder(r"C:\Users\dafyd\PycharmProjects\TennisBetfinder\\", r"OddsLookupTrends.csv")
