@@ -33,6 +33,7 @@ while iterations < max_iterations:
             back_odds = my_odds_holder.get_back_odds(str(bet[4]))
             back_stake = round(functions.ideal_back_stake(lay_odds, back_odds, lay_stake), 2)
 
+
             # Format the values as currency
             formatted_lay_stake = f"£{lay_stake:.2f}"
             formatted_back_stake = f"£{back_stake:.2f}"
@@ -51,7 +52,7 @@ while iterations < max_iterations:
             # print(text_message)
             functions.send_bet_notification(text_message)
 
-            functions.record_bet(bet[0])
+            functions.record_bet(bet[0],bet[5])
 
         else:
             x=1+1

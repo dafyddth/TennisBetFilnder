@@ -22,8 +22,8 @@ key = config['api_key']
 cert = config['cert_path']
 
 def get_betfair_data():
-    viableBets = [
-        ['Market_ID', 'Event', 'OpenDate', 'PlayerName', 'LayOdds']
+    viable_bets = [
+        ['Market_ID', 'Event', 'OpenDate', 'PlayerName', 'LayOdds', 'RunnerID']
     ]
     # Create a trading instance
     trading = betfairlightweight.APIClient(un, pw, key, certs=cert, locale='en_GB')
@@ -51,16 +51,16 @@ def get_betfair_data():
                     price_projection=filters.price_projection(price_data=['EX_BEST_OFFERS'])
                 )
                 for market_book in market_books:
-                    check_and_append_bet(e, market, market_book, viableBets)
+                    check_and_append_bet(e, market, market_book, viable_bets)
 
     except Exception as e:
         logging.error(f"An error occurred: {e}")
     finally:
         trading.logout()
 
-    #for bet in viableBets:
+    #for bet in viable_bets:
         #print(bet)
-    return viableBets
+    return viable_bets
 def check_and_append_bet(event, market, market_book, viableBets):
     for runner_index in range(len(market_book.runners)):
         if len(market_book.runners[runner_index].ex.available_to_lay) > 0 and market_book.runners[runner_index].ex.available_to_lay[0].price < max_lay_odds and mins_till_start > minutes_until(
@@ -73,9 +73,11 @@ def check_and_append_bet(event, market, market_book, viableBets):
                 event.event.name,
                 event.event.open_date.strftime('%Y-%m-%d %H:%M:%S'),
                 market.runners[runner_index].runner_name,
-                market_book.runners[runner_index].ex.available_to_lay[0].price
+                market_book.runners[runner_index].ex.available_to_lay[0].price,
+                market_book.runners[runner_index].selection_id
+
             ]
             viableBets.append(current_market_book)
 
 
-get_betfair_data()
+
