@@ -23,7 +23,7 @@ cert = config['cert_path']
 
 def get_betfair_data():
     viable_bets = [
-        ['Market_ID', 'Event', 'OpenDate', 'PlayerName', 'LayOdds', 'RunnerID']
+        ['Market_ID', 'Event', 'OpenDate', 'PlayerName', 'LayOdds', 'RunnerID', 'TotalMatched', 'TotalAvailable', 'Size']
     ]
     # Create a trading instance
     trading = betfairlightweight.APIClient(un, pw, key, certs=cert, locale='en_GB')
@@ -74,7 +74,10 @@ def check_and_append_bet(event, market, market_book, viableBets):
                 event.event.open_date.strftime('%Y-%m-%d %H:%M:%S'),
                 market.runners[runner_index].runner_name,
                 market_book.runners[runner_index].ex.available_to_lay[0].price,
-                market_book.runners[runner_index].selection_id
+                market_book.runners[runner_index].selection_id,
+                market.total_matched,
+                market_book.total_available,
+                market_book.runners[runner_index].ex.available_to_lay[0].size
 
             ]
             viableBets.append(current_market_book)

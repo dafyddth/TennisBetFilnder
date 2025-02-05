@@ -20,8 +20,8 @@ def minutes_until(target_time):
 
 
 def check_if_new_bet(market_id):
-    sql = "SELECT COUNT(*) FROM Markets WHERE MarketID = ?;"
-    conn = sqlite3.connect("TennisMarkets.db")
+    sql = "SELECT COUNT(*) FROM BetRecord WHERE MarketID = ?;"
+    conn = sqlite3.connect("C:/Users/dafyd/PycharmProjects/TennisHistoric/Tennis.db")
     cursor = conn.cursor()
 
     try:
@@ -39,13 +39,14 @@ def check_if_new_bet(market_id):
         conn.close()
 
 
-def record_bet(market_id,player_id):
-    sql = "INSERT INTO Markets (MarketID, NotificationDate, PlayerID) VALUES (?, ?, ?);"
-    conn = sqlite3.connect("TennisMarkets.db")
+def record_bet(market_id,player_id, lay_odds, back_odds, lay_stake, back_stake, total_matched, total_available, size):
+    sql = ("INSERT INTO BetRecord (MarketID, NotificationDate, PlayerID, LayOdds, BackOdds, LayStake,BackStake, TotalMatched, TotalAvailable, Size)"
+           " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);")
+    conn = sqlite3.connect("C:/Users/dafyd/PycharmProjects/TennisHistoric/Tennis.db")
     cursor = conn.cursor()
 
     try:
-        cursor.execute(sql, (market_id, datetime.now(),player_id))
+        cursor.execute(sql, (market_id, datetime.now(),player_id, lay_odds, back_odds, lay_stake, back_stake, total_matched, total_available, size))
         conn.commit()  # Commit the transaction
         return True
     except sqlite3.Error as e:

@@ -33,6 +33,9 @@ while iterations < max_iterations:
             lay_stake = round(required_liability / (lay_odds - 1), 2)
             back_odds = my_odds_holder.get_back_odds(str(bet[4]))
             back_stake = round(functions.ideal_back_stake(lay_odds, back_odds, lay_stake), 2)
+            total_matched = bet[6]
+            total_available = bet[7]
+            size = bet[8]
 
 
             # Format the values as currency
@@ -52,8 +55,8 @@ while iterations < max_iterations:
 
             # print(text_message)
             functions.send_bet_notification(text_message)
-
-            functions.record_bet(bet[0],bet[5])
+            functions.record_bet(bet[0],bet[5], lay_odds, back_odds, round(lay_stake,2),
+                                 round(back_stake,2), total_matched, total_available, size)
 
         else:
             x=1+1
